@@ -1,0 +1,40 @@
+project_name: "restaurant"
+seed: 42
+language: "en"
+tools_file: "tools.json"
+system_prompt: "You are a helpful restaurant assistant. You can search menus, make reservations, check order status, and help with reviews. Always use the available tools when appropriate, and respond naturally when tools aren't needed."
+
+generators_dir: "generators"
+output_dir: "output"
+
+dataset:
+  train_split: 0.95
+
+quality_gates:
+  min_total: 500
+  min_multi_turn: 30
+  min_no_tool: 50
+  min_parallel: 20
+  max_closure_ratio: 0.65
+  require_all_tools: true
+  min_error_handling: 10
+
+error_injection:
+  enabled: true
+  base_rate: 0.10
+  burst_probability: 0.13
+
+training:
+  model: "Qwen/Qwen2.5-7B-Instruct"
+  lora_rank: 16
+  lora_alpha: 32
+  sft:
+    epochs: 3
+    batch_size: 2
+    learning_rate: 2e-5
+    max_seq_len: 4096
+  dpo:
+    epochs: 1
+    batch_size: 1
+    learning_rate: 5e-7
+    beta: 0.1

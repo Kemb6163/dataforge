@@ -1,0 +1,152 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "search_menu",
+      "description": "Search the restaurant menu by category, dietary restrictions, or price range",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query (e.g., 'vegetarian pasta', 'desserts under $15')"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["appetizers", "mains", "desserts", "drinks", "sides"],
+            "description": "Menu category to filter by"
+          },
+          "dietary": {
+            "type": "string",
+            "enum": ["vegetarian", "vegan", "gluten-free", "dairy-free", "nut-free"],
+            "description": "Dietary restriction filter"
+          },
+          "max_price": {
+            "type": "number",
+            "description": "Maximum price in dollars"
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_dish_details",
+      "description": "Get detailed information about a specific dish including ingredients, allergens, and nutritional info",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "dish_id": {
+            "type": "string",
+            "description": "The unique dish identifier"
+          }
+        },
+        "required": ["dish_id"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "make_reservation",
+      "description": "Book a table at the restaurant",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Reservation date (YYYY-MM-DD)"
+          },
+          "time": {
+            "type": "string",
+            "description": "Reservation time (HH:MM)"
+          },
+          "party_size": {
+            "type": "integer",
+            "description": "Number of guests"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name for the reservation"
+          },
+          "special_requests": {
+            "type": "string",
+            "description": "Any special requests (e.g., high chair, wheelchair access)"
+          }
+        },
+        "required": ["date", "time", "party_size", "name"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "check_availability",
+      "description": "Check table availability for a specific date and time",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Date to check (YYYY-MM-DD)"
+          },
+          "time": {
+            "type": "string",
+            "description": "Time to check (HH:MM)"
+          },
+          "party_size": {
+            "type": "integer",
+            "description": "Number of guests"
+          }
+        },
+        "required": ["date", "time", "party_size"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_order_status",
+      "description": "Check the current status of a food order",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string",
+            "description": "The order ID to look up"
+          }
+        },
+        "required": ["order_id"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "submit_review",
+      "description": "Submit a restaurant review with rating and feedback",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "rating": {
+            "type": "integer",
+            "description": "Rating from 1-5 stars",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "review_text": {
+            "type": "string",
+            "description": "Written review text"
+          },
+          "order_id": {
+            "type": "string",
+            "description": "Optional associated order ID"
+          }
+        },
+        "required": ["rating", "review_text"]
+      }
+    }
+  }
+]

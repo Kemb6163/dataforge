@@ -1,0 +1,172 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "search_tickets",
+      "description": "Search support tickets by status, priority, customer, or keyword",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query or keywords"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["open", "in_progress", "pending", "resolved", "closed"],
+            "description": "Filter by ticket status"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"],
+            "description": "Filter by priority level"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Filter by customer ID"
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "create_ticket",
+      "description": "Create a new support ticket",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": "string",
+            "description": "Ticket subject/title"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the issue"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"],
+            "description": "Priority level"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Customer ID"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["billing", "technical", "account", "general", "feature_request"],
+            "description": "Issue category"
+          }
+        },
+        "required": ["subject", "description", "priority", "customer_id"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "update_ticket",
+      "description": "Update an existing support ticket's status, priority, or assignee",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticket_id": {
+            "type": "string",
+            "description": "Ticket ID to update"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["open", "in_progress", "pending", "resolved", "closed"],
+            "description": "New status"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"],
+            "description": "New priority"
+          },
+          "assignee": {
+            "type": "string",
+            "description": "New assignee name or ID"
+          },
+          "note": {
+            "type": "string",
+            "description": "Internal note to add"
+          }
+        },
+        "required": ["ticket_id"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "search_knowledge_base",
+      "description": "Search the knowledge base for articles and documentation",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["getting_started", "troubleshooting", "billing", "api", "integrations"],
+            "description": "Article category filter"
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_customer_info",
+      "description": "Get customer details including account info, subscription, and support history",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "description": "Customer ID"
+          },
+          "email": {
+            "type": "string",
+            "description": "Customer email (alternative lookup)"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "escalate_ticket",
+      "description": "Escalate a ticket to senior support or engineering team",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticket_id": {
+            "type": "string",
+            "description": "Ticket ID to escalate"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Reason for escalation"
+          },
+          "team": {
+            "type": "string",
+            "enum": ["senior_support", "engineering", "billing", "security"],
+            "description": "Team to escalate to"
+          }
+        },
+        "required": ["ticket_id", "reason", "team"]
+      }
+    }
+  }
+]
